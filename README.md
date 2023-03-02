@@ -2,9 +2,7 @@ I just came with the idea: what if I made a caesar cipher encrypter and decrypte
 
 If you want to try it out just download the source code, run "make" on the terminal and execute the file that corresponds to what you want to do (encrypt or decrypt) located in the "bin" folder, giving it a string to encrypt or decrypt, for example:
 
-----------------------------------------
-./bin/encrypt 'Hello! my name is Renan!'
-----------------------------------------
+![encrypt](https://user-images.githubusercontent.com/115666219/222555610-05f434c5-5e1d-4132-bc24-0ad7de065eb5.png)
 
 The output is going to be the encrypted string in this case, but it works the same way for decrypting too. But to run it, you need to compile it first (using "make", as I said earlier).
 
