@@ -5,28 +5,56 @@ enum operation {
 };
 
 char shift(char c, enum operation op) {
-    for (int i=0; i<3; i++) {
-        if (op==ENCRYPT) {
-            if (c=='Z') {
+    if (op==ENCRYPT) {
+        switch (c) {
+            case 'X':
                 c='A';
-                continue;
-            }
-            else if (c=='z') {
+                break;
+            case 'Y':
+                c='B';
+                break;
+            case 'Z':
+                c='C';
+                break;
+
+            case 'x':
                 c='a';
-                continue;
-            }
-            c++;
+                break;
+            case 'y':
+                c='b';
+                break;
+            case 'z':
+                c='c';
+                break;
+            default:
+                c+=3;
+                break;
         }
-        else if (op==DECRYPT) {
-            if (c=='A') {
+    }
+    else if (op==DECRYPT) {
+        switch (c) {
+            case 'A':
+                c='X';
+                break;
+            case 'B':
+                c='Y';
+                break;
+            case 'C':
                 c='Z';
-                continue;
-            }
-            else if (c=='a') {
+                break;
+
+            case 'a':
+                c='x';
+                break;
+            case 'b':
+                c='y';
+                break;
+            case 'c':
                 c='z';
-                continue;
-            }
-            c--;
+                break;
+            default:
+                c-=3;
+                break;
         }
     }
     return c;
