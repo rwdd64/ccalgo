@@ -1,16 +1,11 @@
-output: encrypt.o decrypt.o
-	clang obj/encrypt.o -o bin/encrypt
-	clang obj/decrypt.o -o bin/decrypt
+output: full.o
+	clang obj/full.o -o bin/full
 
-encrypt.o: encrypt.c tools.h
-	clang -c encrypt.c -o obj/encrypt.o
-
-decrypt.o: decrypt.c tools.h
-	clang -c decrypt.c -o obj/decrypt.o
+full.o: full.c tools.h
+	clang -c full.c -o obj/full.o
 
 clean:
 	rm -rf bin/* obj/*
 
 install-home:
-	mv bin/encrypt ~/bin/ccalgo-encrypt
-	mv bin/decrypt ~/bin/ccalgo-decrypt
+	mv bin/full ~/bin/ccalgo-full
