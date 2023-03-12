@@ -1,15 +1,20 @@
-output: full.o
-	clang obj/full.o -o bin/full
+output: main.o flags.o crypt.o tools.o
+	clang obj/tools.o obj/main.o obj/flags.o obj/crypt.o -o bin/ccalgo
 
-full.o: full.c tools.h
-	clang -c full.c -o obj/full.o
+main.o: src/main.c
+	clang -c src/main.c -o obj/main.o
+
+flags.o: src/flags.c
+	clang -c src/flags.c -o obj/flags.o
+
+crypt.o: src/crypt.c
+	clang -c src/crypt.c -o obj/crypt.o
+
+tools.o: src/tools.c
+	clang -c src/tools.c -o obj/tools.o
 
 clean:
 	rm -rf bin/* obj/*
 
 install-home:
-	mv bin/full ~/bin/ccalgo-full
-
-hardcoded:
-	clang -c full_hardcoded.c -o obj/full_hardcoded.o
-	clang obj/full_hardcoded.o -o bin/full_hardcoded
+	mv bin/ccalgo ~/bin/ccalgo

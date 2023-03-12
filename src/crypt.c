@@ -1,8 +1,4 @@
-#include "tools.h"
-
-enum operation {
-    ENCRYPT, DECRYPT
-};
+#include "headers/crypt.h"
 
 char shift(char c, enum operation op) {
     for (int i=0; i<3; i++) {
@@ -50,33 +46,4 @@ char* crypt(const char text[], enum operation op) {
         result[i+1]='\0';
     }
         return result;
-}
-
-void handle_flags(const char* flags, enum operation* op) {
-    if (strcmp(flags, "-e") == 0) {
-        *op=ENCRYPT;
-    }
-    else if (strcmp(flags, "-d") == 0) {
-        *op=DECRYPT;
-    }
-}
-
-
-int main(int argc, char *argv[]) {
-    if (argc<3) {
-        printf("When calling the command, please input a action to perform (-e => encrypt | -d => decrypt) followed by the text you want to perform the action on.\n");
-    }
-    else {
-        const char* flags=argv[1];
-        const char* str=argv[2];
-        enum operation op; 
-
-        handle_flags(flags, &op);
-        if (strcmp(crypt(str, op), "__ERR__") == 0) {
-            printf("ERROR > The maximum number of characters in the string is 128.\n");
-        }
-        else {
-            printf("%s\n", crypt(str, op));
-        }
-    }
 }
