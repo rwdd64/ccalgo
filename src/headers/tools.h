@@ -5,6 +5,10 @@
 #include <stdio.h>
 #include <string.h>
 
-bool is_letter(const char c) { return (c>='A' && c<='Z') || (c>='a' && c<='z'); }
+enum operation {
+    ENCRYPT, DECRYPT
+};
+
+bool is_letter(const char c);
 
 #endif
