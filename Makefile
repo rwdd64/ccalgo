@@ -1,5 +1,5 @@
 COMPILER=gcc
-PLATFORM=windows
+PLATFORM=linux
 OBJS=main.o flags.o crypt.o tools.o
 TARGET=ccalgo
 
