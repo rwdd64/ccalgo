@@ -1,20 +1,42 @@
-output: main.o flags.o crypt.o tools.o
-	clang obj/tools.o obj/main.o obj/flags.o obj/crypt.o -o bin/ccalgo
+COMPILER=gcc
+PLATFORM=windows
+OBJS=main.o flags.o crypt.o tools.o
+TARGET=ccalgo
 
-main.o: src/main.c
-	clang -c src/main.c -o obj/main.o
+output: $(OBJS) folders
+	$(COMPILER) obj/tools.o obj/main.o obj/flags.o obj/crypt.o -o bin/$(TARGET)
 
-flags.o: src/flags.c
-	clang -c src/flags.c -o obj/flags.o
+main.o: src/main.c folders
+	$(COMPILER) -c src/main.c -o obj/main.o
 
-crypt.o: src/crypt.c
-	clang -c src/crypt.c -o obj/crypt.o
+flags.o: src/flags.c folders
+	$(COMPILER) -c src/flags.c -o obj/flags.o
 
-tools.o: src/tools.c
-	clang -c src/tools.c -o obj/tools.o
+crypt.o: src/crypt.c folders
+	$(COMPILER) -c src/crypt.c -o obj/crypt.o
+
+tools.o: src/tools.c folders
+	$(COMPILER) -c src/tools.c -o obj/tools.o
+
+folders:
+ifeq ($(PLATFORM), windows)
+	MKDIR obj
+	MKDIR bin
+else
+	mkdir obj
+	mkdir bin
+endif
 
 clean:
-	rm -rf bin/* obj/*
+ifeq ($(PLATFORM), windows)
+	RMDIR /Q /S bin & RMDIR /Q /S obj
+else
+	rm -rf bin obj
+endif
 
-install-home:
+install:
+ifeq ($(PLATFORM), windows)
+	MOVE bin/ccalgo.exe %systemdrive%%homepath%/bin/
+else
 	mv bin/ccalgo ~/bin/ccalgo
+endif
